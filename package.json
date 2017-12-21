@@ -2,11 +2,11 @@
   "name": "react-infinite-auto-height",
   "version": "0.0.1",
   "description": "A wrapper for the React Infinite infinite scroll component that adapts to display components of variable height.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "author": "Ryan Felix <therjfelix@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "webpack"
+    "build": "babel src/ --out-dir lib"
   },
   "dependencies": {
     "react": "15",
