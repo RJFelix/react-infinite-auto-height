@@ -27,14 +27,22 @@ class InfiniteAutoHeight extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if(this.state.heights.length !== newProps.children.length) {
-      this.setState(prevState => {
-        const oldHeights = prevState.heights.slice(0);
-        const newHeights = new Array(newProps.children.length - this.state.heights.length)
-          .fill(newProps.defaultHeight || 345);
-        return {
-          heights: oldHeights.concat(newHeights)
-        };
-      })
+      if(this.state.heights.length < newProps.children.length) {
+        this.setState(prevState => {
+          const oldHeights = prevState.heights.slice(0);
+          const newHeights = new Array(newProps.children.length - this.state.heights.length)
+            .fill(newProps.defaultHeight || 345);
+          return {
+            heights: oldHeights.concat(newHeights)
+          };
+        })
+      } else {
+        // new children is shorter than existing children,
+        // so start from scratch
+        this.setState({
+          heights: new Array(newProps.children.length).fill(newProps.defaultHeight || 345)
+        });
+      }
     }
   }
 
